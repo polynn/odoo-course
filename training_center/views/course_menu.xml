@@ -1,0 +1,21 @@
+<odoo>
+    <!-- Training App Menu -->
+    <menuitem id="menu_training" name="Training Center" />
+
+    <!-- Action to open the Course list -->
+    <record id="action_training_course" model="ir.actions.act_window">
+        <field name="name">Courses</field>
+        <field name="res_model">training_center.course</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_training_course_content" model="ir.actions.act_window">
+        <field name="name">Courses Content</field>
+        <field name="res_model">training_center.course.line.item</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Item to open the course list -->
+    <menuitem id="menu_training_course" name="Course" parent="menu_training" action="action_training_course" />
+    <menuitem id="menu_training_course_contents" name="Content" parent="menu_training_course" groups="training_center.course_group_manager" action="action_training_course_content" />
+
+</odoo>

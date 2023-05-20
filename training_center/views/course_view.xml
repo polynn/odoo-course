@@ -1,0 +1,66 @@
+<odoo>
+    <record id="course_form_view" model="ir.ui.view">
+        <field name="name">Course Form</field>
+        <field name="model">training_center.course</field>
+        <field name="arch" type="xml">
+            <form string="Course">
+                <header>
+                    <button name="action_do_cancel" type="object" string="Cancel" states="new" groups="training_center.course_group_manager"/>
+                    <button name="action_do_complete" type="object" string="Complete" states="new" />
+                    <field name="state" widget="statusbar" statusbar_visible="new,completed" />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="descr"/>
+                            <field name="course_level"/>
+                            <field name="active"/>
+                            <field name="price"/>
+                            <field name="currency_id"/>
+                            <field name="remarks"/>
+                            <field name="state" invisible="True"/>
+                        </group>
+                        <group>
+                            <field name="company_id" attrs="{'readonly':[('state','=','completed')]}"/>
+                            <field name="teacher_ids" widget="many2many_tags"/>
+                            <field name="cover_image" widget="image"/>
+                            <field name="country_id"/>
+                            <field name="num_of_contents"/>
+
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="Contents">
+                            <field name="course_items_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="duration"/>
+
+                                </tree>
+
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+            <!-- Header -->
+            <!-- Sheet/Body -->
+
+            <!-- Footer-Log  -->
+        </field>
+    </record>
+    <record id="course_tree_view" model="ir.ui.view">
+        <field name="name">Course Tree</field>
+        <field name="model">training_center.course</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="course_level"/>
+                <field name="start_date"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
